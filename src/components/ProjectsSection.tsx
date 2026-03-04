@@ -1,42 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
-
-import projectNexova from "@/assets/project-nexova.jpg";
-import projectLuxe from "@/assets/project-luxe.jpg";
-import projectGrain from "@/assets/project-grain.jpg";
-import projectAtlas from "@/assets/project-atlas.jpg";
-
-const projects = [
-  {
-    title: "Nexova Fintech",
-    category: "Brand Identity • Fintech",
-    description:
-      "Complete brand identity system for a next-gen fintech startup, including logo, typography system, color palette, and digital brand guidelines.",
-    image: projectNexova,
-  },
-  {
-    title: "Luxe Botanica",
-    category: "Packaging Design • Luxury",
-    description:
-      "Premium packaging system for a luxury skincare brand, featuring foil-stamped boxes, custom typography, and sustainable material choices.",
-    image: projectLuxe,
-  },
-  {
-    title: "Grain & Gather",
-    category: "Brand Identity • Food & Beverage",
-    description:
-      "Full brand identity and packaging design for an artisanal food brand — from farm-to-table positioning to shelf-ready packaging.",
-    image: projectGrain,
-  },
-  {
-    title: "Atlas Industrial",
-    category: "Brand Strategy • Industrial",
-    description:
-      "Strategic rebrand for an industrial manufacturing company — modernizing a 20-year-old brand for a new era of growth.",
-    image: projectAtlas,
-  },
-];
+import { Link } from "react-router-dom";
+import { projects } from "@/data/projects";
 
 const ProjectsSection = () => {
   const ref = useRef(null);
