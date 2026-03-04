@@ -1,21 +1,60 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Instagram, Twitter, Linkedin, Mail } from "lucide-react";
+import { Send, Instagram, Twitter, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { FaWhatsapp } from "react-icons/fa";
+
+const SOCIAL_LINKS = [
+  { Icon: Instagram, href: "https://www.instagram.com/enemona.isaac" },
+  { Icon: Twitter, href: "https://x.com/enemonaisaaz" },
+  // { Icon: Linkedin, href: "https://linkedin.com/in/johndoe-professional-random" },
+  { Icon: FaWhatsapp, href: "https://wa.me/2349162045977" }
+];
 
 const ContactSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
-    setFormData({ name: "", email: "", message: "" });
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+      console.log(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+      console.log(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""
+      );
+
+      toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error Sending Message",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,20 +77,22 @@ const ContactSection = () => {
             </p>
 
             <div className="space-y-6">
-              <a href="mailto:hello@onojadesigns.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors font-body group">
+              <a href="mailto:enemonaisaaconoja@gmail.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors font-body group">
                 <div className="w-12 h-12 rounded-full border border-border group-hover:border-primary flex items-center justify-center transition-colors">
                   <Mail size={18} />
                 </div>
-                hello@onojadesigns.com
+                enemonaisaaconoja@gmail.com
               </a>
               <div className="flex gap-4 pt-4">
-                {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+                {SOCIAL_LINKS.map((social, i) => (
                   <a
                     key={i}
-                    href="#"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
                   >
-                    <Icon size={18} className="text-muted-foreground hover:text-primary" />
+                    <social.Icon size={18} className="text-muted-foreground hover:text-primary" />
                   </a>
                 ))}
               </div>
@@ -97,8 +138,8 @@ const ContactSection = () => {
                 className="bg-card border-border focus:border-primary font-body resize-none"
               />
             </div>
-            <Button variant="hero" size="lg" type="submit" className="w-full gap-2">
-              Send Message <Send size={16} />
+            <Button variant="hero" size="lg" type="submit" className="w-full gap-2" disabled={isSubmitting}>
+              {isSubmitting ? "Sending..." : "Send Message"} {!isSubmitting && <Send size={16} />}
             </Button>
           </motion.form>
         </div>

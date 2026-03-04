@@ -8,6 +8,11 @@ import caseNexovaLogoGrid from "@/assets/case-nexova-logo-grid.jpg";
 import caseNexovaIdentity from "@/assets/case-nexova-identity.jpg";
 import caseNexovaApplications from "@/assets/case-nexova-applications.jpg";
 
+import nextron from "@/assets/Nextron.png";
+import purestart from "@/assets/BABY.png";
+import davora from "@/assets/Davora.png";
+import pixelore from "@/assets/PIXELORE.png";
+
 export interface Project {
   slug: string;
   title: string;
@@ -35,16 +40,16 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "nexova-fintech",
-    title: "Nexova Fintech",
+    title: "Nextron",
     category: "Brand Identity • Fintech",
     industry: "Fintech",
-    client: "Nexova Inc.",
+    client: "Nextron",
     services: ["Brand Strategy", "Logo Design", "Visual Identity", "Digital Brand Guidelines"],
-    timeline: "8 Weeks",
+    timeline: "6 Weeks",
     description:
       "Complete brand identity system for a next-gen fintech startup, including logo, typography system, color palette, and digital brand guidelines.",
-    image: projectNexova,
-    hero: caseNexovaHero,
+    image: nextron,
+    hero: nextron,
     summary:
       "Nexova needed a brand identity that communicated trust, innovation, and sophistication to both retail and institutional investors. We built a strategic identity system from the ground up — starting with positioning research and ending with a complete digital brand toolkit.",
     challenge:
@@ -74,16 +79,16 @@ export const projects: Project[] = [
   },
   {
     slug: "luxe-botanica",
-    title: "Luxe Botanica",
+    title: "Davora",
     category: "Packaging Design • Luxury",
     industry: "Luxury Skincare",
-    client: "Luxe Botanica Ltd.",
+    client: "Davora",
     services: ["Brand Identity", "Packaging Design", "Print Design", "Material Strategy"],
     timeline: "10 Weeks",
     description:
       "Premium packaging system for a luxury skincare brand, featuring foil-stamped boxes, custom typography, and sustainable material choices.",
-    image: projectLuxe,
-    hero: projectLuxe,
+    image: davora,
+    hero: davora,
     summary:
       "Luxe Botanica required a premium packaging system that communicated natural luxury. We designed a cohesive identity spanning custom boxes, labels, and collateral — all rooted in a strategy of 'botanical elegance.'",
     challenge:
@@ -113,16 +118,16 @@ export const projects: Project[] = [
   },
   {
     slug: "grain-and-gather",
-    title: "Grain & Gather",
+    title: "PureStart",
     category: "Brand Identity • Food & Beverage",
     industry: "Food & Beverage",
-    client: "Grain & Gather Co.",
+    client: "PureStart",
     services: ["Brand Strategy", "Logo Design", "Packaging Design", "Brand Guidelines"],
     timeline: "12 Weeks",
     description:
       "Full brand identity and packaging design for an artisanal food brand — from farm-to-table positioning to shelf-ready packaging.",
-    image: projectGrain,
-    hero: projectGrain,
+    image: purestart,
+    hero: purestart,
     summary:
       "Grain & Gather needed a brand that told their farm-to-table story with authenticity and warmth while standing out on crowded supermarket shelves.",
     challenge:
@@ -152,16 +157,16 @@ export const projects: Project[] = [
   },
   {
     slug: "atlas-industrial",
-    title: "Atlas Industrial",
+    title: "Pixelore",
     category: "Brand Strategy • Industrial",
     industry: "Industrial Manufacturing",
-    client: "Atlas Industrial Corp.",
+    client: "Pixelore",
     services: ["Brand Strategy", "Logo Redesign", "Corporate Identity", "Environmental Design"],
     timeline: "6 Weeks",
     description:
       "Strategic rebrand for an industrial manufacturing company — modernizing a 20-year-old brand for a new era of growth.",
-    image: projectAtlas,
-    hero: projectAtlas,
+    image: pixelore,
+    hero: pixelore,
     summary:
       "Atlas Industrial needed to shed its outdated image and reposition for a new chapter of growth, M&A activity, and talent acquisition in the modern manufacturing landscape.",
     challenge:
