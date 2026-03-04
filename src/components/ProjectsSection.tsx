@@ -37,35 +37,36 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15 * i }}
-              className="group relative overflow-hidden rounded-xl border border-border hover:border-primary/30 transition-all duration-500"
             >
-              <div className="relative flex flex-col md:flex-row">
-                {/* Image */}
-                <div className="md:w-2/5 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-56 md:h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
-                  <p className="text-primary text-xs font-display tracking-[0.2em] uppercase mb-3">
-                    {project.category}
-                  </p>
-                  <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground font-body font-light leading-relaxed max-w-xl mb-6">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center gap-3 text-primary font-display text-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>View Project</span>
-                    <ArrowUpRight size={16} />
+              <Link
+                to={`/project/${project.slug}`}
+                className="group block relative overflow-hidden rounded-xl border border-border hover:border-primary/30 transition-all duration-500"
+              >
+                <div className="relative flex flex-col md:flex-row">
+                  <div className="md:w-2/5 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-56 md:h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+                    <p className="text-primary text-xs font-display tracking-[0.2em] uppercase mb-3">
+                      {project.category}
+                    </p>
+                    <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground font-body font-light leading-relaxed max-w-xl mb-6">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center gap-3 text-primary font-display text-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span>View Project</span>
+                      <ArrowUpRight size={16} />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
