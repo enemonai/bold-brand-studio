@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { getProject, getAdjacentProjects, Paragraph } from "@/data/projects";
+import { SEO } from "@/components/SEO";
 import enemonaLogo from "../assets/ENEMONA1.png";
 
 const ParagraphRender = ({ paragraphs, className = "" }: { paragraphs: Paragraph[]; className?: string }) => (
@@ -76,6 +77,11 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title={`${project.title} - Enemona Isaac's Design Portfolio`}
+        description={project.description}
+        image={project.hero}
+      />
       {/* ─── Top bar ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">

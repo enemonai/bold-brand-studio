@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
+import { SEO } from "@/components/SEO";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
 
 const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Projects | Enemona Isaac's Design Portfolio" />
       <SiteNavigation />
 
       {/* Hero */}
