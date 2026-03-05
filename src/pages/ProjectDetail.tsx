@@ -2,7 +2,40 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getProject, getAdjacentProjects } from "@/data/projects";
+import { getProject, getAdjacentProjects, Paragraph } from "@/data/projects";
+import enemonaLogo from "../assets/ENEMONA1.png";
+
+const ParagraphRender = ({ paragraphs, className = "" }: { paragraphs: Paragraph[]; className?: string }) => (
+  <div className={`space-y-6 ${className}`}>
+    {paragraphs.map((p, i) => (
+      <div key={i}>
+        {p.heading && (
+          <h3 className="font-display text-xl font-bold mb-3">{p.heading}</h3>
+        )}
+        {(p.inlineHeading || p.text) && (
+          <p className="text-muted-foreground font-body text-lg leading-relaxed font-light">
+            {p.inlineHeading && (
+              <span className="font-semibold text-foreground mr-2">{p.inlineHeading}</span>
+            )}
+            {p.text}
+          </p>
+        )}
+        {p.bullets && p.bullets.length > 0 && (
+          <ul className="list-disc list-outside ml-6 mt-4 space-y-2 text-muted-foreground font-body text-lg font-light">
+            {p.bullets.map((bullet, idx) => (
+              <li key={idx} className="pl-2">{bullet}</li>
+            ))}
+          </ul>
+        )}
+        {p.closing && (
+          <p className="text-muted-foreground font-body text-lg leading-relaxed font-light">
+            {p.closing}
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
+);
 
 /* ── tiny scroll-animated section wrapper ── */
 const Section = ({
@@ -46,14 +79,14 @@ const ProjectDetail = () => {
       {/* ─── Top bar ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-          <Link to="/" className="font-display text-xl font-bold tracking-tight">
-            ONOJA<span className="text-primary">.</span>
-          </Link>
+          <a href="#" className="flex items-center">
+            <img src={enemonaLogo} alt="Onoja" className="h-[20px] w-auto" />
+          </a>
           <Link
             to="/#projects"
             className="text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase flex items-center gap-2"
           >
-            <ArrowLeft size={14} /> Back to Projects
+            <ArrowLeft size={14} /> Back <span className="hidden md:block">to Projects</span>
           </Link>
         </div>
       </nav>
@@ -85,7 +118,7 @@ const ProjectDetail = () => {
             <img
               src={project.hero}
               alt={`${project.title} hero`}
-              className="w-full h-[50vh] md:h-[65vh] object-cover"
+              className="w-full aspect-[16/9] object-cover"
             />
           </div>
         </motion.div>
@@ -117,9 +150,7 @@ const ProjectDetail = () => {
               <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
                 Project Overview
               </p>
-              <p className="text-muted-foreground font-body text-lg leading-relaxed font-light">
-                {project.summary}
-              </p>
+              <ParagraphRender paragraphs={project.summary} />
             </div>
           </Section>
         </div>
@@ -135,9 +166,7 @@ const ProjectDetail = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
               Identifying the <span className="text-gradient">Brand Gap</span>
             </h2>
-            <p className="text-muted-foreground font-body text-lg leading-relaxed font-light max-w-3xl">
-              {project.challenge}
-            </p>
+            <ParagraphRender paragraphs={project.challenge} className="max-w-3xl" />
           </Section>
         </div>
       </section>
@@ -152,9 +181,7 @@ const ProjectDetail = () => {
             <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
               Strategic <span className="text-gradient">Direction</span>
             </h2>
-            <p className="text-muted-foreground font-body text-lg leading-relaxed font-light max-w-3xl">
-              {project.strategy}
-            </p>
+            <ParagraphRender paragraphs={project.strategy} className="max-w-3xl" />
           </Section>
         </div>
       </section>
@@ -173,9 +200,7 @@ const ProjectDetail = () => {
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Section>
-              <p className="text-muted-foreground font-body text-lg leading-relaxed font-light">
-                {project.logoBreakdown}
-              </p>
+              <ParagraphRender paragraphs={project.logoBreakdown} />
             </Section>
             <Section delay={0.15}>
               <div className="rounded-xl overflow-hidden border border-border">
@@ -247,46 +272,50 @@ const ProjectDetail = () => {
               </div>
             </div>
           </Section>
+        </div>
 
-          {/* Full identity image */}
-          <Section>
-            <div className="rounded-xl overflow-hidden border border-border">
+        {/* Full identity images */}
+        <div className="w-full flex flex-col">
+          {project.identityImages?.map((img, idx) => (
+            <Section key={idx}>
               <img
-                src={project.identityImage}
-                alt="Visual identity system"
-                className="w-full object-cover"
+                src={img}
+                alt={`Visual identity system ${idx + 1}`}
+                className="w-full h-auto object-cover"
               />
-            </div>
-          </Section>
+            </Section>
+          ))}
         </div>
       </section>
 
       {/* ─── REAL-WORLD APPLICATIONS ─── */}
       <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="container mx-auto px-6 lg:px-12 mb-16">
           <Section>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               Applications
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-16 max-w-3xl">
+            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
               Brand in <span className="text-gradient">Context</span>
             </h2>
           </Section>
+        </div>
 
-          <Section>
-            <div className="rounded-xl overflow-hidden border border-border">
+        <div className="w-full flex flex-col">
+          {project.applicationsImages?.map((img, idx) => (
+            <Section key={idx}>
               <img
-                src={project.applicationsImage}
-                alt="Real-world brand applications"
-                className="w-full object-cover"
+                src={img}
+                alt={`Real-world brand applications ${idx + 1}`}
+                className="w-full h-auto object-cover"
               />
-            </div>
-          </Section>
+            </Section>
+          ))}
         </div>
       </section>
 
       {/* ─── RESULTS ─── */}
-      <section className="py-24">
+      <section className="py-24 hidden">
         <div className="container mx-auto px-6 lg:px-12">
           <Section>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
