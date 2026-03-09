@@ -11,6 +11,11 @@ import nextron3 from "@/assets/project/nextron/Nextron3.png";
 import nextron4 from "@/assets/project/nextron/Nextron4.png";
 import nextron5 from "@/assets/project/nextron/Nextron5.png";
 import nextron6 from "@/assets/project/nextron/Nextron6.png";
+
+import purestart1 from "@/assets/project/purestart/BABY1.png";
+import purestart2 from "@/assets/project/purestart/BABY2.png";
+import purestart3 from "@/assets/project/purestart/BABY3.png";
+
 import caseNexovaIdentity from "@/assets/case-nexova-identity.jpg";
 import caseNexovaApplications from "@/assets/case-nexova-applications.jpg";
 
@@ -18,6 +23,12 @@ import nextron from "@/assets/Nextron.png";
 import purestart from "@/assets/BABY.png";
 import davora from "@/assets/Davora.png";
 import pixelore from "@/assets/PIXELORE.png";
+
+export interface SectionHeading {
+  headingTextStart?: string;
+  headingTextSpecial?: string;
+  headingTextEnd?: string;
+}
 
 export interface Paragraph {
   heading?: string;
@@ -36,19 +47,30 @@ export interface Project {
   hero: string;
   industry: string;
   client: string;
+  aboutClientHeading?: SectionHeading;
+  aboutClient?: Paragraph[];
   services: string[];
   timeline: string;
   summary: Paragraph[];
+  challengeHeading?: SectionHeading;
   challenge: Paragraph[];
+  strategyHeading?: SectionHeading;
   strategy: Paragraph[];
-  logoBreakdown: Paragraph[];
-  logoGridImage: string;
+  logoDesignHeading?: SectionHeading;
+  logoDesign?: {
+    breakdown: Paragraph[];
+    gridImage: string;
+  };
+  visualIdentityHeading?: SectionHeading;
   identityImages: string[];
-  applicationsImages: string[];
+  applicationsHeading?: SectionHeading;
+  applicationsImages?: string[];
   colorPalette: { name: string; hex: string }[];
   typographyPrimary: string;
   typographySecondary: string;
+  resultsHeading?: SectionHeading;
   results: { label: string; value: string }[];
+  keywords: string[];
 }
 
 export const projects: Project[] = [
@@ -58,6 +80,10 @@ export const projects: Project[] = [
     category: "Brand Identity • Fintech",
     industry: "Fintech",
     client: "Nextron",
+    aboutClientHeading: { headingTextStart: "About ", headingTextSpecial: "Nextron" },
+    aboutClient: [
+      { text: "Nextron is a modern fintech organization striving to change how individuals and businesses interact with their finances. They partner with diverse teams to build secure financial systems." }
+    ],
     services: ["Brand Strategy", "Logo Design", "Visual Identity", "Digital Brand Guidelines"],
     timeline: "6 Weeks",
     description:
@@ -74,22 +100,24 @@ export const projects: Project[] = [
       { text: "Nextron is a next-generation fintech brand built to simplify how people and businesses move, manage, and grow money. We combine cutting-edge technology with smart financial solutions to create fast, secure, and seamless digital experiences." },
       { text: "At Nextron, we believe finance should be intuitive, accessible, and built for the future. From payments to financial tools, our platform is designed to empower users with control, confidence, and clarity in every transaction. Driven by innovation and trust, Nextron is redefining modern finance—helping individuals and businesses stay ahead in a rapidly evolving digital economy." }
     ],
-    logoBreakdown: [
-      { heading: "ELEMENTS OF THE LOGO" },
-      {
-        inlineHeading: "1. Lightning Mark (Core Symbol)",
-        text: "The primary element of the logo is a stylized lightning inspired mark. It represents speed, power, and financial momentum reflecting Nextron's ability to enable fast, seamless digital transactions. The sharp yet smooth edges communicate precision powered by technology"
-      },
-      {
-        inlineHeading: "2. Secure Structure",
-        text: "The continuous, enclosed shape of the symbol conveys protection and stability. This subtly reinforces Nextron's commitment to secure transactions, safe data systems, and trustworthy financial infrastructure.."
-      },
-      {
-        inlineHeading: "3. Digital Flow & Connection",
-        text: "The intersecting lines within the symbol represent networks and digital pathwayshighlighting how Nextron connects users, businesses, and financial systems effortlessly. It reflects innovation, integration, and smart financial ecosystems."
-      }
-    ],
-    logoGridImage: nextronBreakdown,
+    logoDesign: {
+      breakdown: [
+        { heading: "ELEMENTS OF THE LOGO" },
+        {
+          inlineHeading: "1. Lightning Mark (Core Symbol)",
+          text: "The primary element of the logo is a stylized lightning inspired mark. It represents speed, power, and financial momentum reflecting Nextron's ability to enable fast, seamless digital transactions. The sharp yet smooth edges communicate precision powered by technology"
+        },
+        {
+          inlineHeading: "2. Secure Structure",
+          text: "The continuous, enclosed shape of the symbol conveys protection and stability. This subtly reinforces Nextron's commitment to secure transactions, safe data systems, and trustworthy financial infrastructure.."
+        },
+        {
+          inlineHeading: "3. Digital Flow & Connection",
+          text: "The intersecting lines within the symbol represent networks and digital pathwayshighlighting how Nextron connects users, businesses, and financial systems effortlessly. It reflects innovation, integration, and smart financial ecosystems."
+        }
+      ],
+      gridImage: nextronBreakdown,
+    },
     identityImages: [nextron1, nextron2, nextron3],
     applicationsImages: [nextron4, nextron5, nextron6],
     colorPalette: [
@@ -107,6 +135,7 @@ export const projects: Project[] = [
       { label: "Digital Touchpoints Unified", value: "12+" },
       { label: "Time to Market", value: "8 Weeks" },
     ],
+    keywords: ["Nextron", "Fintech", "Brand Identity", "Financial Startup", "Next-gen Fintech"],
   },
   {
     slug: "davora",
@@ -129,10 +158,12 @@ export const projects: Project[] = [
     strategy: [
       { text: "We positioned the brand around 'Nature, Refined.' The visual direction combines organic textures with architectural precision — hand-drawn botanical illustrations paired with rigorous grid systems and luxurious material finishes." }
     ],
-    logoBreakdown: [
-      { text: "The wordmark uses a custom-modified serif with delicate botanical flourishes integrated into key letterforms. The 'L' and 'B' monogram serves as a secondary mark for packaging stamps and embossing." }
-    ],
-    logoGridImage: nextronBreakdown,
+    logoDesign: {
+      breakdown: [
+        { text: "The wordmark uses a custom-modified serif with delicate botanical flourishes integrated into key letterforms. The 'L' and 'B' monogram serves as a secondary mark for packaging stamps and embossing." }
+      ],
+      gridImage: nextronBreakdown,
+    },
     identityImages: [caseNexovaIdentity],
     applicationsImages: [caseNexovaApplications],
     colorPalette: [
@@ -150,6 +181,7 @@ export const projects: Project[] = [
       { label: "Packaging SKUs Designed", value: "24" },
       { label: "Sustainable Materials", value: "100%" },
     ],
+    keywords: ["Davora", "Luxury Skincare", "Premium Packaging", "Botanical Beauty", "Skincare Branding"],
   },
   {
     slug: "purestart",
@@ -157,42 +189,54 @@ export const projects: Project[] = [
     category: "Packaging Design",
     industry: "Food & Beverage",
     client: "PureStart",
-    services: ["Brand Strategy", "Logo Design", "Packaging Design", "Brand Guidelines"],
-    timeline: "12 Weeks",
+    services: ["Packaging Design"],
+    timeline: "2 WeekS",
     description:
-      "Full brand identity and packaging design for an artisanal food brand — from farm-to-table positioning to shelf-ready packaging.",
+      "Packaging design for a healthy baby food product, featuring playful visuals, soft colors, and clear nutritional information to communicate natural ingredients and safe nutrition for babies 6+ months",
     image: purestart,
     hero: purestart,
     summary: [
-      { text: "Grain & Gather needed a brand that told their farm-to-table story with authenticity and warmth while standing out on crowded supermarket shelves." }
+      { text: "The PureStart Baby Food Packaging was designed to communicate freshness, safety, and natural nutrition for infants starting their food journey. The goal of the packaging was to create a warm, friendly, and trustworthy visual experience that appeals to parents while remaining playful and inviting for baby related products." }
     ],
+    challengeHeading: {
+      headingTextStart: "Attractive ",
+      headingTextSpecial: "Product Packaging",
+    },
     challenge: [
-      { text: "The artisanal food market is flooded with brands using rustic clichés. Grain & Gather needed to feel authentic without falling into the 'kraft paper and burlap' trap. They required a modern interpretation of artisanal values that resonated with health-conscious millennials." }
+      { text: "Designing the packaging for PureStart Baby Food required creating a visual system that would immediately communicate trust, safety, and nutritional value to parents while remaining warm and approachable for a baby-focused product" }
     ],
     strategy: [
-      { text: "We built the brand around 'Modern Craft' — combining clean, contemporary typography with hand-drawn illustrative elements. The visual system bridges artisanal warmth and modern sophistication." }
+      { text: "The packaging strategy focused on creating a design that communicates health, trust, and simplicity—three key factors parents look for when choosing baby food products. The goal was to ensure the packaging feels both nurturing and informative, while still standing out on the shelf." }
     ],
-    logoBreakdown: [
-      { text: "The wordmark pairs a bold geometric sans-serif with a hand-lettered ampersand that symbolizes the connection between farm and table. The wheat motif in the icon is abstracted into a minimal geometric form." }
-    ],
-    logoGridImage: nextronBreakdown,
-    identityImages: [caseNexovaIdentity],
-    applicationsImages: [caseNexovaApplications],
+    // logoDesign: {
+    //   breakdown: [
+    //     { text: "The wordmark pairs a bold geometric sans-serif with a hand-lettered ampersand that symbolizes the connection between farm and table. The wheat motif in the icon is abstracted into a minimal geometric form." }
+    //   ],
+    //   gridImage: nextronBreakdown,
+    // },
+    identityImages: [purestart1, purestart2, purestart3],
+    // applicationsImages: [caseNexovaApplications],
     colorPalette: [
-      { name: "Warm Cream", hex: "#F5EDE0" },
-      { name: "Harvest Gold", hex: "#D4A853" },
-      { name: "Earth Brown", hex: "#5C4033" },
-      { name: "Sage Green", hex: "#7A8B6F" },
-      { name: "Charcoal", hex: "#2A2A2A" },
+      { name: "Fresh Green", hex: "#9AC04D" },
+      { name: "Bright Yellow", hex: "#FFF000" },
+      { name: "Tomato Red", hex: "#E93D13" },
+      { name: "Pure White", hex: "#FFFFFF" },
+      { name: "Olive Dark Green", hex: "#414D35" },
     ],
-    typographyPrimary: "DM Serif Display",
-    typographySecondary: "Montserrat",
+    typographyPrimary: "Montserrat",
+    typographySecondary: "Asdonuts",
     results: [
       { label: "Retail Placement", value: "120+ Stores" },
       { label: "Brand Recognition", value: "+70%" },
       { label: "Product Lines Designed", value: "8" },
       { label: "Social Engagement", value: "+55%" },
     ],
+    keywords: ["PureStart", "Baby Food",
+      "Packaging Design",
+      "Product Packaging",
+      "Food Packaging",
+      "Infant Nutrition",
+      "Healthy Baby Food"],
   },
   {
     slug: "pixelore",
@@ -221,25 +265,27 @@ export const projects: Project[] = [
         text: "We crafted a bold and immersive brand identity rooted in cinematic expression and digital precision. The logo and visual system were designed to embody motion, dimension, and creative mastery — balancing artistic elegance with technological innovation. Through refined typography, a striking visual language, and a cohesive brand system, Pixelore was positioned as a premium 3D studio built to captivate audiences and elevate visual experiences."
       }
     ],
-    logoBreakdown: [
-      { heading: "ELEMENTS OF THE LOGO" },
-      {
-        inlineHeading: "1. Concept Foundation",
-        text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
-      },
-      {
-        inlineHeading: "2. Custom Wordmark Construction",
-        text: "The logo is a fully customized wordmark, designed to feel:",
-        bullets: [
-          "Modern and futuristic — reflecting cutting-edge 3D technology",
-          "Fluid and cinematic — mirroring motion and animation",
-          "Premium and minimal — aligning with high-end visual artistry",
-        ],
-        closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
-      },
+    logoDesign: {
+      breakdown: [
+        { heading: "ELEMENTS OF THE LOGO" },
+        {
+          inlineHeading: "1. Concept Foundation",
+          text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
+        },
+        {
+          inlineHeading: "2. Custom Wordmark Construction",
+          text: "The logo is a fully customized wordmark, designed to feel:",
+          bullets: [
+            "Modern and futuristic — reflecting cutting-edge 3D technology",
+            "Fluid and cinematic — mirroring motion and animation",
+            "Premium and minimal — aligning with high-end visual artistry",
+          ],
+          closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
+        },
 
-    ],
-    logoGridImage: nextronBreakdown,
+      ],
+      gridImage: nextronBreakdown,
+    },
     identityImages: [caseNexovaIdentity],
     applicationsImages: [caseNexovaApplications],
     colorPalette: [
@@ -257,6 +303,7 @@ export const projects: Project[] = [
       { label: "Brand Modernization", value: "Complete" },
       { label: "Stakeholder Approval", value: "100%" },
     ],
+    keywords: ["Pixelore", "3D Video Artistry", "Visual Storytelling", "Cinematic Studio", "Animation Branding"],
   },
 ];
 

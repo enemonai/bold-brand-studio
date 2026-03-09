@@ -2,9 +2,29 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getProject, getAdjacentProjects, Paragraph } from "@/data/projects";
+import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects";
 import { SEO } from "@/components/SEO";
 import enemonaLogo from "../assets/ENEMONA1.png";
+
+const DynamicHeading = ({
+  heading,
+  defaultStart,
+  defaultSpecial,
+  defaultEnd = "",
+  className = "font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl",
+}: {
+  heading?: SectionHeading;
+  defaultStart: string;
+  defaultSpecial: string;
+  defaultEnd?: string;
+  className?: string;
+}) => (
+  <h2 className={className}>
+    {heading?.headingTextStart ?? defaultStart}
+    <span className="text-gradient">{heading?.headingTextSpecial ?? defaultSpecial}</span>
+    {heading?.headingTextEnd ?? defaultEnd}
+  </h2>
+);
 
 const ParagraphRender = ({ paragraphs, className = "" }: { paragraphs: Paragraph[]; className?: string }) => (
   <div className={`space-y-6 ${className}`}>
@@ -78,9 +98,10 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${project.title} - Enemona Isaac's Design Portfolio`}
-        description={project.description}
+        title={`${project.title} - ${project.client} | Enemona Isaac's Design Portfolio`}
+        description={`Project for ${project.client}: ${project.description}`}
         image={project.hero}
+        keywords={project.keywords}
       />
       {/* ─── Top bar ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
@@ -151,6 +172,23 @@ const ProjectDetail = () => {
             </div>
           </Section>
 
+          {project.aboutClient && project.aboutClient.length > 0 && (
+            <Section>
+              <div className="max-w-3xl mb-16">
+                <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
+                  About the Client
+                </p>
+                <DynamicHeading
+                  heading={project.aboutClientHeading}
+                  defaultStart="Who we "
+                  defaultSpecial="Worked With"
+                  className="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 max-w-3xl"
+                />
+                <ParagraphRender paragraphs={project.aboutClient} />
+              </div>
+            </Section>
+          )}
+
           <Section>
             <div className="max-w-3xl">
               <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
@@ -169,9 +207,11 @@ const ProjectDetail = () => {
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               The Challenge
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-              Identifying the <span className="text-gradient">Brand Gap</span>
-            </h2>
+            <DynamicHeading
+              heading={project.challengeHeading}
+              defaultStart="Identifying the "
+              defaultSpecial="Brand Gap"
+            />
             <ParagraphRender paragraphs={project.challenge} className="max-w-3xl" />
           </Section>
         </div>
@@ -184,42 +224,48 @@ const ProjectDetail = () => {
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               The Strategy
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-              Strategic <span className="text-gradient">Direction</span>
-            </h2>
+            <DynamicHeading
+              heading={project.strategyHeading}
+              defaultStart="Strategic "
+              defaultSpecial="Direction"
+            />
             <ParagraphRender paragraphs={project.strategy} className="max-w-3xl" />
           </Section>
         </div>
       </section>
 
       {/* ─── LOGO BREAKDOWN ─── */}
-      <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
-          <Section>
-            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
-              Logo Design
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-              Mark <span className="text-gradient">Construction</span>
-            </h2>
-          </Section>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {project.logoDesign && (
+        <section className="py-24 bg-secondary/30">
+          <div className="container mx-auto px-6 lg:px-12">
             <Section>
-              <ParagraphRender paragraphs={project.logoBreakdown} />
+              <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
+                Logo Design
+              </p>
+              <DynamicHeading
+                heading={project.logoDesignHeading}
+                defaultStart="Mark "
+                defaultSpecial="Construction"
+              />
             </Section>
-            <Section delay={0.15}>
-              <div className="rounded-xl overflow-hidden border border-border">
-                <img
-                  src={project.logoGridImage}
-                  alt="Logo construction grid"
-                  className="w-full object-cover"
-                />
-              </div>
-            </Section>
+
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <Section>
+                <ParagraphRender paragraphs={project.logoDesign.breakdown} />
+              </Section>
+              <Section delay={0.15}>
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img
+                    src={project.logoDesign.gridImage}
+                    alt="Logo construction grid"
+                    className="w-full object-cover"
+                  />
+                </div>
+              </Section>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ─── VISUAL IDENTITY ─── */}
       <section className="py-24">
@@ -228,9 +274,12 @@ const ProjectDetail = () => {
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               Visual Identity
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-16 max-w-3xl">
-              Identity <span className="text-gradient">System</span>
-            </h2>
+            <DynamicHeading
+              heading={project.visualIdentityHeading}
+              defaultStart="Identity "
+              defaultSpecial="System"
+              className="font-display text-3xl md:text-5xl font-bold leading-tight mb-16 max-w-3xl"
+            />
           </Section>
 
           {/* Color palette */}
@@ -295,30 +344,35 @@ const ProjectDetail = () => {
       </section>
 
       {/* ─── REAL-WORLD APPLICATIONS ─── */}
-      <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12 mb-16">
-          <Section>
-            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
-              Applications
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
-              Brand in <span className="text-gradient">Context</span>
-            </h2>
-          </Section>
-        </div>
-
-        <div className="w-full flex flex-col">
-          {project.applicationsImages?.map((img, idx) => (
-            <Section key={idx}>
-              <img
-                src={img}
-                alt={`Real-world brand applications ${idx + 1}`}
-                className="w-full h-auto object-cover"
+      {project.applicationsImages && project.applicationsImages.length > 0 && (
+        <section className="py-24 bg-secondary/30">
+          <div className="container mx-auto px-6 lg:px-12 mb-16">
+            <Section>
+              <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
+                Applications
+              </p>
+              <DynamicHeading
+                heading={project.applicationsHeading}
+                defaultStart="Brand in "
+                defaultSpecial="Context"
+                className="font-display text-3xl md:text-5xl font-bold leading-tight max-w-3xl"
               />
             </Section>
-          ))}
-        </div>
-      </section>
+          </div>
+
+          <div className="w-full flex flex-col">
+            {project.applicationsImages.map((img, idx) => (
+              <Section key={idx}>
+                <img
+                  src={img}
+                  alt={`Real-world brand applications ${idx + 1}`}
+                  className="w-full h-auto object-cover"
+                />
+              </Section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ─── RESULTS ─── */}
       <section className="py-24 hidden">
@@ -327,9 +381,12 @@ const ProjectDetail = () => {
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               Results & Impact
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-16 max-w-3xl">
-              Measurable <span className="text-gradient">Impact</span>
-            </h2>
+            <DynamicHeading
+              heading={project.resultsHeading}
+              defaultStart="Measurable "
+              defaultSpecial="Impact"
+              className="font-display text-3xl md:text-5xl font-bold leading-tight mb-16 max-w-3xl"
+            />
           </Section>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

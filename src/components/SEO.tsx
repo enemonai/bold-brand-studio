@@ -7,6 +7,7 @@ interface SEOProps {
     type?: string;
     image?: string;
     url?: string;
+    keywords?: string[];
 }
 
 export const SEO = ({
@@ -16,12 +17,14 @@ export const SEO = ({
     type = "website",
     image = "/favicon.png",
     url = window.location.href,
+    keywords = [],
 }: SEOProps) => {
     return (
         <Helmet>
             {/* Standard metadata tags */}
             <title>{title}</title>
             <meta name="description" content={description} />
+            {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
             {/* End standard metadata tags */}
 
             {/* Facebook tags */}
