@@ -99,7 +99,7 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title={`${project.title} - ${project.client} | Enemona Isaac's Design Portfolio`}
-        description={`Project for ${project.client}: ${project.description}`}
+        description={project.aboutClient ? project.aboutClient[0].text : `Project for ${project.client}: ${project.description}`}
         image={project.hero}
         keywords={project.keywords}
       />

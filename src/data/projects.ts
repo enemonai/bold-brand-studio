@@ -12,6 +12,16 @@ import nextron4 from "@/assets/project/nextron/Nextron4.png";
 import nextron5 from "@/assets/project/nextron/Nextron5.png";
 import nextron6 from "@/assets/project/nextron/Nextron6.png";
 
+import davora1 from "@/assets/project/davora/Davora1.png";
+import davora2 from "@/assets/project/davora/Davora2.png";
+import davora3 from "@/assets/project/davora/Davora3.png";
+import davora4 from "@/assets/project/davora/Davora4.png";
+import davora5 from "@/assets/project/davora/Davora5.png";
+import davora6 from "@/assets/project/davora/Davora6.png";
+import davora7 from "@/assets/project/davora/Davora7.png";
+import davora8 from "@/assets/project/davora/Davora8.png";
+import davora9 from "@/assets/project/davora/Davora9.png";
+
 import purestart1 from "@/assets/project/purestart/BABY1.png";
 import purestart2 from "@/assets/project/purestart/BABY2.png";
 import purestart3 from "@/assets/project/purestart/BABY3.png";
@@ -143,38 +153,43 @@ export const projects: Project[] = [
     category: "Brand Identity • Packaging Design • Luxury",
     industry: "Luxury Skincare",
     client: "Davora",
-    services: ["Brand Identity", "Packaging Design", "Print Design", "Material Strategy"],
-    timeline: "10 Weeks",
+    aboutClientHeading: { headingTextStart: "About ", headingTextSpecial: "Davora" },
+    aboutClient: [
+      { text: " DÁVORA Luxury is a refined blend of art, science, and self-expression  a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare." }
+    ],
+    services: ["Brand Identity", "Packaging Design"],
+    timeline: "3 Weeks",
     description:
-      "Premium packaging system for a luxury skincare brand, featuring foil-stamped boxes, custom typography, and sustainable material choices.",
+      " DÁVORA Luxury is a refined blend of art, science, and self-expression  a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare.",
     image: davora,
-    hero: davora,
+    hero: davora8,
     summary: [
-      { text: "Luxe Botanica required a premium packaging system that communicated natural luxury. We designed a cohesive identity spanning custom boxes, labels, and collateral — all rooted in a strategy of 'botanical elegance.'" }
+      { text: "DÁVORA Luxury required a refined brand identity and packaging system that could express sophistication, sensuality, and modern luxury. We designed a cohesive visual language spanning the logo, packaging, labels, and brand assets — all rooted in a strategy of timeless elegance and sensory luxury." }
     ],
     challenge: [
-      { text: "The luxury skincare market demands visual perfection. Luxe Botanica's previous packaging felt generic and failed to justify its premium price point. The brand needed a complete visual overhaul to compete with established luxury houses while maintaining its natural, botanical roots." }
+      { text: "DÁVORA Luxury needed a brand identity that could capture the essence of sophistication, sensuality, and modern luxury while standing out in a highly competitive beauty and fragrance market. The challenge was to create a visual system that felt premium and timeless, while still reflecting the brand's focus on self-care, fragrance, and skincare. Beyond aesthetics, the identity had to communicate elegance and indulgence across multiple touchpoints — from the logo to the packaging and labels. The goal was to craft a design language that felt distinctive, memorable, and cohesive, transforming DÁVORA into a brand that visually expresses luxury, confidence, and refined beauty" }
     ],
     strategy: [
-      { text: "We positioned the brand around 'Nature, Refined.' The visual direction combines organic textures with architectural precision — hand-drawn botanical illustrations paired with rigorous grid systems and luxurious material finishes." }
+      { text: "To position DÁVORA Luxury as a refined and memorable beauty brand, we focused on building a visual identity rooted in elegance, symbolism, and sensory experience. The strategy was to create a brand system that communicates luxury while subtly reflecting the brand's focus on fragrance and skincare." },
+      { text: "The visual language was then extended into the packaging and brand assets, using a minimal yet luxurious design approach. Rich colors, refined typography, and clean layouts were chosen to evoke sophistication, warmth, and timeless appeal, ensuring the brand feels premium across every touchpoint." }
     ],
     logoDesign: {
       breakdown: [
-        { text: "The wordmark uses a custom-modified serif with delicate botanical flourishes integrated into key letterforms. The 'L' and 'B' monogram serves as a secondary mark for packaging stamps and embossing." }
+        { text: "We developed a distinctive logo mark inspired by an abstract “D”, combining a flowing outer swirl with a central circle to symbolize essence, balance, and the core of beauty. This approach allowed the logo to feel both artistic and meaningful, reinforcing the brand's narrative of self-care and indulgence." }
       ],
-      gridImage: nextronBreakdown,
+      gridImage: davora9,
     },
-    identityImages: [caseNexovaIdentity],
-    applicationsImages: [caseNexovaApplications],
+    identityImages: [davora1, davora2, davora3],
+    applicationsImages: [davora4, davora5, davora6, davora7],
     colorPalette: [
-      { name: "Ivory", hex: "#F5F0E8" },
-      { name: "Forest Green", hex: "#2D4A3E" },
-      { name: "Gold Foil", hex: "#C9A96E" },
-      { name: "Blush", hex: "#E8D5C8" },
-      { name: "Deep Brown", hex: "#3A2A1A" },
+      { name: "Ivory", hex: "#F5E4C3" },
+      { name: "Forest Green", hex: "#1E4447" },
+      { name: "Gold Foil", hex: "#972336" },
+      // { name: "Blush", hex: "#E8D5C8" },
+      // { name: "Deep Brown", hex: "#3A2A1A" },
     ],
-    typographyPrimary: "Playfair Display",
-    typographySecondary: "Montserrat",
+    typographyPrimary: "KUGILE",
+    typographySecondary: "POPPINS",
     results: [
       { label: "Shelf Appeal Score", value: "+65%" },
       { label: "Brand Perception Lift", value: "+50%" },
@@ -189,6 +204,10 @@ export const projects: Project[] = [
     category: "Packaging Design",
     industry: "Food & Beverage",
     client: "PureStart",
+    aboutClientHeading: { headingTextStart: "About ", headingTextSpecial: "PureStart" },
+    aboutClient: [
+      { text: "PureStart is a family-first food brand committed to providing wholesome, safe, and nutritious meals for infants and toddlers. Their mission is to support early developmental stages with high-quality, transparently sourced ingredients that parents can trust." }
+    ],
     services: ["Packaging Design"],
     timeline: "2 WeekS",
     description:
@@ -244,6 +263,10 @@ export const projects: Project[] = [
     category: "Brand Identity • Startup",
     industry: "3d video artistry",
     client: "Pixelore",
+    aboutClientHeading: { headingTextStart: "About ", headingTextSpecial: "Pixelore" },
+    aboutClient: [
+      { text: "Pixelore is a boundary-pushing 3D artistry and animation studio specializing in immersive visual storytelling. They collaborate with brands to craft breathtaking cinematic experiences, leveraging state-of-the-art technology to bring complex imaginative worlds to life." }
+    ],
     services: ["Brand Strategy", "Logo design", "Corporate Identity"],
     timeline: "6 Weeks",
     description:

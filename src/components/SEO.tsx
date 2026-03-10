@@ -6,6 +6,7 @@ interface SEOProps {
     name?: string;
     type?: string;
     image?: string;
+    icon?: string;
     url?: string;
     keywords?: string[];
 }
@@ -15,7 +16,8 @@ export const SEO = ({
     description = "Discover the design portfolio of Enemona Isaac, a product designer and digital experience creator.",
     name = "Enemona Isaac",
     type = "website",
-    image = "/favicon.png",
+    image = "https://i.postimg.cc/Nf8Q7Y8q/2H0A0127.jpg",
+    icon = "https://i.postimg.cc/zX79GfSv/favicon.png",
     url = window.location.href,
     keywords = [],
 }: SEOProps) => {
@@ -25,6 +27,8 @@ export const SEO = ({
             <title>{title}</title>
             <meta name="description" content={description} />
             {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+            <link rel="icon" href={icon} />
+            <link rel="apple-touch-icon" href={icon} />
             {/* End standard metadata tags */}
 
             {/* Facebook tags */}
