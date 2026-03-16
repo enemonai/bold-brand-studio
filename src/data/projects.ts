@@ -12,6 +12,14 @@ import nextron4 from "@/assets/project/nextron/Nextron4.png";
 import nextron5 from "@/assets/project/nextron/Nextron5.png";
 import nextron6 from "@/assets/project/nextron/Nextron6.png";
 
+
+import pixelore1 from "@/assets/project/pixelore/pixelore1.png";
+import pixelore2 from "@/assets/project/pixelore/pixelore2.png";
+import pixelore3 from "@/assets/project/pixelore/pixelore3.png";
+import pixelore4 from "@/assets/project/pixelore/pixelore4.png";
+import pixelore5 from "@/assets/project/pixelore/pixelore5.png";
+
+
 import davora1 from "@/assets/project/davora/Davora1.png";
 import davora2 from "@/assets/project/davora/Davora2.png";
 import davora3 from "@/assets/project/davora/Davora3.png";
@@ -288,37 +296,37 @@ export const projects: Project[] = [
         text: "We crafted a bold and immersive brand identity rooted in cinematic expression and digital precision. The logo and visual system were designed to embody motion, dimension, and creative mastery — balancing artistic elegance with technological innovation. Through refined typography, a striking visual language, and a cohesive brand system, Pixelore was positioned as a premium 3D studio built to captivate audiences and elevate visual experiences."
       }
     ],
-    logoDesign: {
-      breakdown: [
-        { heading: "ELEMENTS OF THE LOGO" },
-        {
-          inlineHeading: "1. Concept Foundation",
-          text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
-        },
-        {
-          inlineHeading: "2. Custom Wordmark Construction",
-          text: "The logo is a fully customized wordmark, designed to feel:",
-          bullets: [
-            "Modern and futuristic — reflecting cutting-edge 3D technology",
-            "Fluid and cinematic — mirroring motion and animation",
-            "Premium and minimal — aligning with high-end visual artistry",
-          ],
-          closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
-        },
+    // logoDesign: {
+    //   breakdown: [
+    //     { heading: "ELEMENTS OF THE LOGO" },
+    //     {
+    //       inlineHeading: "1. Concept Foundation",
+    //       text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
+    //     },
+    //     {
+    //       inlineHeading: "2. Custom Wordmark Construction",
+    //       text: "The logo is a fully customized wordmark, designed to feel:",
+    //       bullets: [
+    //         "Modern and futuristic — reflecting cutting-edge 3D technology",
+    //         "Fluid and cinematic — mirroring motion and animation",
+    //         "Premium and minimal — aligning with high-end visual artistry",
+    //       ],
+    //       closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
+    //     },
 
-      ],
-      gridImage: nextronBreakdown,
-    },
-    identityImages: [caseNexovaIdentity],
-    applicationsImages: [caseNexovaApplications],
+    //   ],
+    //   gridImage: nextronBreakdown,
+    // },
+    identityImages: [pixelore1, pixelore2],
+    applicationsImages: [pixelore3, pixelore4, pixelore5],
     colorPalette: [
-      { name: "Steel Blue", hex: "#2C3E50" },
-      { name: "Industrial Orange", hex: "#E67E22" },
-      { name: "Pure White", hex: "#FFFFFF" },
-      { name: "Concrete Gray", hex: "#95A5A6" },
-      { name: "Deep Black", hex: "#1A1A1A" },
+      { name: "Flame Orange", hex: "#E53C11" },
+      { name: "Lemon Yellow", hex: "#FFF212" },
+      { name: "Jet Black", hex: "#000000" },
+      { name: "Pure White", hex: "#FEFEFE" },
+
     ],
-    typographyPrimary: "Space Grotesk",
+    typographyPrimary: "Ogotu-thin",
     typographySecondary: "Montserrat",
     results: [
       { label: "Talent Acquisition", value: "+35%" },

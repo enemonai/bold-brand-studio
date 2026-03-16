@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 import enemonaLogo from "../assets/ENEMONA1.png";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const SiteNavigation = () => {
@@ -30,7 +30,7 @@ const SiteNavigation = () => {
         }`}
     >
       <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-        <a href="#" className="flex items-center">
+        <a href="/" className="flex items-center">
           <img src={enemonaLogo} alt="Onoja" className="h-[20px] w-auto" />
         </a>
 
@@ -46,7 +46,7 @@ const SiteNavigation = () => {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             className="ml-4 bg-primary text-primary-foreground px-6 py-2.5 rounded-md text-sm font-display font-semibold tracking-wide hover:shadow-[0_0_30px_hsl(166_91%_50%/0.4)] transition-all duration-300"
           >
             Let's Talk

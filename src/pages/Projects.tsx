@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,6 +8,8 @@ import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
 
 const Projects = () => {
+  const [visibleCount, setVisibleCount] = useState(4);
+
   return (
     <div className="min-h-screen bg-background">
       <SEO title="Projects | Enemona Isaac's Design Portfolio" />
@@ -46,7 +49,7 @@ const Projects = () => {
       <section className="pb-32">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, i) => (
+            {projects.slice(0, visibleCount).map((project, i) => (
               <motion.div
                 key={project.slug}
                 initial={{ opacity: 0, y: 40 }}
@@ -84,6 +87,22 @@ const Projects = () => {
               </motion.div>
             ))}
           </div>
+
+          {visibleCount < projects.length && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mt-16 flex justify-center"
+            >
+              <button
+                onClick={() => setVisibleCount((prev) => prev + 4)}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-display tracking-wider text-sm uppercase hover:bg-primary/90 transition-colors"
+              >
+                Show More Projects
+              </button>
+            </motion.div>
+          )}
         </div>
       </section>
 

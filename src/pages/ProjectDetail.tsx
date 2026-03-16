@@ -106,11 +106,11 @@ const ProjectDetail = () => {
       {/* ─── Top bar ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img src={enemonaLogo} alt="Onoja" className="h-[20px] w-auto" />
           </a>
           <Link
-            to="/#projects"
+            to="/projects"
             className="text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase flex items-center gap-2"
           >
             <ArrowLeft size={14} /> Back <span className="hidden md:block">to Projects</span>

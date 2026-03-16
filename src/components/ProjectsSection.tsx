@@ -70,6 +70,20 @@ const ProjectsSection = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-16 flex justify-center"
+        >
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-display tracking-wider text-sm uppercase hover:bg-primary/90 transition-colors"
+          >
+            See All Projects <ArrowUpRight size={16} />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
