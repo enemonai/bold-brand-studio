@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 40% 14%;
+    --foreground: 0 0% 100%;
+
+    --card: 216 38% 18%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 216 40% 14%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 166 91% 50%;
+    --primary-foreground: 216 40% 14%;
+
+    --secondary: 216 35% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 216 30% 25%;
+    --muted-foreground: 210 15% 65%;
+
+    --accent: 166 91% 50%;
+    --accent-foreground: 216 40% 14%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 30% 25%;
+    --input: 216 30% 25%;
+    --ring: 166 91% 50%;
+
+    --radius: 0.5rem;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    --sidebar-background: 216 40% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 166 91% 50%;
+    --sidebar-primary-foreground: 216 40% 14%;
+    --sidebar-accent: 216 35% 22%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 216 30% 25%;
+    --sidebar-ring: 166 91% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(166 91% 50%), hsl(166 91% 70%));
+  }
+  .glow-accent {
+    box-shadow: 0 0 30px hsl(166 91% 50% / 0.2), 0 0 60px hsl(166 91% 50% / 0.1);
+  }
+  .border-glow {
+    border-color: hsl(166 91% 50% / 0.3);
+  }
+}
