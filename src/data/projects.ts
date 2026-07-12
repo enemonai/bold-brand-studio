@@ -288,7 +288,7 @@ export const projects: Project[] = [
       { text: "PureStart is a family-first food brand committed to providing wholesome, safe, and nutritious meals for infants and toddlers. Their mission is to support early developmental stages with high-quality, transparently sourced ingredients that parents can trust." }
     ],
     services: ["Packaging Design"],
-    timeline: "2 WeekS",
+    timeline: "2 Weeks",
     description:
       "Packaging design for a healthy baby food product, featuring playful visuals, soft colors, and clear nutritional information to communicate natural ingredients and safe nutrition for babies 6+ months",
     image: purestart,
