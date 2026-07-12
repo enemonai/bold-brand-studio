@@ -12,7 +12,10 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO title="Projects | Enemona Isaac's Design Portfolio" />
+      <SEO
+        title="Projects | Enemona Isaac's Design Portfolio"
+        pathname="/projects"
+      />
       <SiteNavigation />
 
       {/* Hero */}

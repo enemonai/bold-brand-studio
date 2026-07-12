@@ -103,6 +103,7 @@ const ProjectDetail = () => {
         description={project.aboutClient ? project.aboutClient[0].text : `Project for ${project.client}: ${project.description}`}
         image={project.hero}
         keywords={project.keywords}
+        pathname={`/project/${project.slug}`}
       />
       {/* ─── Navigation ─── */}
       <SiteNavigation />

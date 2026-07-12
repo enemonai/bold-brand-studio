@@ -12,7 +12,7 @@ import SiteFooter from "@/components/SiteFooter";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO />
+      <SEO pathname="/" />
       <SiteNavigation />
       <HeroSection />
       <AboutSection />
