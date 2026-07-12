@@ -15,7 +15,7 @@ const OUTPUT_FILE = resolve(__dirname, '../src/data/projects.generated.ts');
 const API_BASE = (
   process.env.CRELYST_API_URL ||
   process.env.VITE_CRELYST_API_URL ||
-  'http://localhost:3000'
+  'https://www.crelyst.com.ng'
 ).replace(/\/$/, '');
 
 const MAX_ATTEMPTS = 3;
