@@ -1,4 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import defaultOgImage from '@/assets/2H0A0127.jpg';
+
+const defaultIcon = '/favicon.png';
 
 interface SEOProps {
     title?: string;
@@ -16,8 +19,8 @@ export const SEO = ({
     description = "Discover the design portfolio of Enemona Isaac, a product designer and digital experience creator.",
     name = "Enemona Isaac",
     type = "website",
-    image = "https://i.postimg.cc/Nf8Q7Y8q/2H0A0127.jpg",
-    icon = "https://i.postimg.cc/zX79GfSv/favicon.png",
+    image = defaultOgImage,
+    icon = defaultIcon,
     url = window.location.href,
     keywords = [],
 }: SEOProps) => {
