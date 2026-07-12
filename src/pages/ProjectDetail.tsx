@@ -4,6 +4,8 @@ import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects.generated";
 import { SEO } from "@/components/SEO";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from "@/lib/jsonLd";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -104,6 +106,21 @@ const ProjectDetail = () => {
         image={project.hero}
         keywords={project.keywords}
         pathname={`/project/${project.slug}`}
+      />
+      <JsonLd
+        data={[
+          buildCreativeWorkJsonLd({
+            title: project.title,
+            description: project.description,
+            image: project.hero,
+            slug: project.slug,
+          }),
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Projects', path: '/projects' },
+            { name: project.title, path: `/project/${project.slug}` },
+          ]),
+        ]}
       />
       {/* ─── Navigation ─── */}
       <SiteNavigation />

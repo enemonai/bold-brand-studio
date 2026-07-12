@@ -4,6 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects.generated";
 import { SEO } from "@/components/SEO";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbJsonLd } from "@/lib/jsonLd";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -15,6 +17,12 @@ const Projects = () => {
       <SEO
         title="Projects | Enemona Isaac's Design Portfolio"
         pathname="/projects"
+      />
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Projects', path: '/projects' },
+        ])}
       />
       <SiteNavigation />
 
