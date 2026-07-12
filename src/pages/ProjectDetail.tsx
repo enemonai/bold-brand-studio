@@ -381,7 +381,7 @@ const ProjectDetail = () => {
       )}
 
       {/* ─── RESULTS ─── */}
-      <section className="py-24 hidden">
+      <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <Section>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
