@@ -86,6 +86,35 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 }
 
+function buildLlmsDocument(routes: string[], full = false): string {
+  const lines = [
+    '# Enemona Isaac — Strategic Brand Designer',
+    '',
+    '> Logo, brand identity, and premium packaging for startups, fintech, and luxury brands.',
+    '',
+    '## Canonical site',
+    SITE_URL,
+    '',
+    '## Primary pages',
+    ...routes.map(route => `- ${SITE_URL}${route === '/' ? '' : route}`),
+  ];
+
+  if (full) {
+    lines.push(
+      '',
+      '## Portfolio focus',
+      '- Brand identity systems',
+      '- Packaging and visual identity',
+      '- Strategic rebrands',
+      '',
+      '## Contact',
+      `- ${SITE_URL}/#contact`
+    );
+  }
+
+  return `${lines.join('\n')}\n`;
+}
+
 function main(): void {
   if (!existsSync(DIST_DIR)) {
     throw new Error('[post-build-seo] dist/ not found — run vite-react-ssg build first.');
@@ -107,9 +136,13 @@ function main(): void {
 
   writeFileSync(join(DIST_DIR, 'sitemap.xml'), sitemap, 'utf8');
   writeFileSync(join(DIST_DIR, 'robots.txt'), robots, 'utf8');
+  writeFileSync(join(DIST_DIR, 'llms.txt'), buildLlmsDocument(expectedRoutes, false), 'utf8');
+  writeFileSync(join(DIST_DIR, 'llms-full.txt'), buildLlmsDocument(expectedRoutes, true), 'utf8');
   mkdirSync(PUBLIC_DIR, { recursive: true });
   writeFileSync(join(PUBLIC_DIR, 'sitemap.xml'), sitemap, 'utf8');
   writeFileSync(join(PUBLIC_DIR, 'robots.txt'), robots, 'utf8');
+  writeFileSync(join(PUBLIC_DIR, 'llms.txt'), buildLlmsDocument(expectedRoutes, false), 'utf8');
+  writeFileSync(join(PUBLIC_DIR, 'llms-full.txt'), buildLlmsDocument(expectedRoutes, true), 'utf8');
 
   console.log(
     `[post-build-seo] verified ${expectedRoutes.length} prerendered routes and wrote sitemap.xml + robots.txt`
