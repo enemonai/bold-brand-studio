@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync:content": "npx tsx scripts/sync-content.ts",
+    "predev": "npm run sync:content",
     "dev": "vite",
+    "prebuild": "npm run sync:content",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

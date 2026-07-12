@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects";
+import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects.generated";
 import { SEO } from "@/components/SEO";
 import SiteNavigation from "@/components/SiteNavigation";
 import SiteFooter from "@/components/SiteFooter";
