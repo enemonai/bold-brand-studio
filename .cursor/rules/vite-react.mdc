@@ -1,0 +1,31 @@
+---
+description: Vite + React SPA guard rails for bold-brand-studio
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# bold-brand-studio — Vite + React Guard Rails
+
+## Routing and structure
+
+- React Router in `src/App.tsx`—add new routes **above** the catch-all `*` route.
+- Pages live in `src/pages/`; shared UI in `src/components/` and `src/components/ui/` (shadcn).
+
+## Data and integrations
+
+- No backend in this repo; contact/forms use **EmailJS** (`@emailjs/browser`)—do not add Express or Next API routes here.
+- TanStack Query is configured at the app root—use it for any future async client data; avoid ad-hoc `useEffect` fetch unless necessary.
+
+## Styling
+
+- Tailwind + `tailwind.config.ts`; extend existing tokens and component patterns.
+- Do not replace global font/theme setup in `index.html` / root layout without confirmation.
+
+## Quality
+
+- Run `npm run lint` and `npm test` when changing non-trivial logic.
+- Keep components focused; prefer colocating page-specific UI under `src/pages/` or `src/components/`.
+
+## Boundaries
+
+- This repo is independent of `crelyst` and `crelyst-backend`—do not import from sibling folders.
