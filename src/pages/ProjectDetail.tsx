@@ -284,8 +284,8 @@ const ProjectDetail = () => {
               Color Palette
             </p>
             <div className="flex flex-wrap gap-4 mb-16">
-              {project.colorPalette.map((color) => (
-                <div key={color.hex} className="group">
+              {project.colorPalette.map((color, index) => (
+                <div key={`${color.hex}-${index}`} className="group">
                   <div
                     className="w-24 h-24 rounded-lg border border-border mb-3 transition-transform duration-300 group-hover:scale-105"
                     style={{ backgroundColor: color.hex }}
