@@ -408,12 +408,12 @@ export const projects: Project[] = [
     client: "Davora",
     aboutClientHeading: { headingTextStart: "About ", headingTextSpecial: "Davora" },
     aboutClient: [
-      { text: " DÁVORA Luxury is a refined blend of art, science, and self-expression  a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare." }
+      { text: "DÁVORA Luxury is a refined blend of art, science, and self-expression — a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare." }
     ],
     services: ["Brand Identity", "Packaging Design"],
     timeline: "3 Weeks",
     description:
-      " DÁVORA Luxury is a refined blend of art, science, and self-expression  a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare.",
+      "DÁVORA Luxury is a refined blend of art, science, and self-expression — a brand born from the desire to elevate everyday rituals into moments of pure indulgence. Rooted in sophistication and crafted with intention, DÁVORA combines the allure of timeless fragrances with the nourishment of luxurious skincare.",
     image: davora,
     hero: davora8,
     summary: [
