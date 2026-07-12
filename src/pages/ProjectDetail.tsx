@@ -4,7 +4,8 @@ import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects";
 import { SEO } from "@/components/SEO";
-import enemonaLogo from "../assets/ENEMONA1.png";
+import SiteNavigation from "@/components/SiteNavigation";
+import SiteFooter from "@/components/SiteFooter";
 
 const DynamicHeading = ({
   heading,
@@ -103,24 +104,19 @@ const ProjectDetail = () => {
         image={project.hero}
         keywords={project.keywords}
       />
-      {/* ─── Top bar ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-          <a href="/" className="flex items-center">
-            <img src={enemonaLogo} alt="Onoja" className="h-[20px] w-auto" />
-          </a>
-          <Link
-            to="/projects"
-            className="text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase flex items-center gap-2"
-          >
-            <ArrowLeft size={14} /> Back <span className="hidden md:block">to Projects</span>
-          </Link>
-        </div>
-      </nav>
+      {/* ─── Navigation ─── */}
+      <SiteNavigation />
 
       {/* ─── HERO ─── */}
       <header className="pt-32 pb-20">
         <div className="container mx-auto px-6 lg:px-12">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase mb-8"
+          >
+            <ArrowLeft size={14} /> Back to Projects
+          </Link>
+
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               {project.industry}
@@ -452,14 +448,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* ─── Footer ─── */}
-      <footer className="py-12 border-t border-border">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
-          <p className="text-muted-foreground font-body text-sm">
-            © {new Date().getFullYear()} Onoja Enemona Isaac. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 };
