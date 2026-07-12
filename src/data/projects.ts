@@ -306,12 +306,12 @@ export const projects: Project[] = [
     strategy: [
       { text: "The packaging strategy focused on creating a design that communicates health, trust, and simplicity—three key factors parents look for when choosing baby food products. The goal was to ensure the packaging feels both nurturing and informative, while still standing out on the shelf." }
     ],
-    // logoDesign: {
-    //   breakdown: [
-    //     { text: "The wordmark pairs a bold geometric sans-serif with a hand-lettered ampersand that symbolizes the connection between farm and table. The wheat motif in the icon is abstracted into a minimal geometric form." }
-    //   ],
-    //   gridImage: nextronBreakdown,
-    // },
+    logoDesign: {
+      breakdown: [
+        { text: "The wordmark pairs a bold geometric sans-serif with a hand-lettered ampersand that symbolizes the connection between farm and table. The wheat motif in the icon is abstracted into a minimal geometric form." }
+      ],
+      gridImage: purestart1,
+    },
     identityImages: [purestart1, purestart2, purestart3],
     // applicationsImages: [caseNexovaApplications],
     colorPalette: [
@@ -482,27 +482,27 @@ export const projects: Project[] = [
         text: "We crafted a bold and immersive brand identity rooted in cinematic expression and digital precision. The logo and visual system were designed to embody motion, dimension, and creative mastery — balancing artistic elegance with technological innovation. Through refined typography, a striking visual language, and a cohesive brand system, Pixelore was positioned as a premium 3D studio built to captivate audiences and elevate visual experiences."
       }
     ],
-    // logoDesign: {
-    //   breakdown: [
-    //     { heading: "ELEMENTS OF THE LOGO" },
-    //     {
-    //       inlineHeading: "1. Concept Foundation",
-    //       text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
-    //     },
-    //     {
-    //       inlineHeading: "2. Custom Wordmark Construction",
-    //       text: "The logo is a fully customized wordmark, designed to feel:",
-    //       bullets: [
-    //         "Modern and futuristic — reflecting cutting-edge 3D technology",
-    //         "Fluid and cinematic — mirroring motion and animation",
-    //         "Premium and minimal — aligning with high-end visual artistry",
-    //       ],
-    //       closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
-    //     },
+    logoDesign: {
+      breakdown: [
+        { heading: "ELEMENTS OF THE LOGO" },
+        {
+          inlineHeading: "1. Concept Foundation",
+          text: "The Pixelore logo is built around the fusion of “Pixel” (technology, precision, digital craft) and “Lore” (storytelling, narrative depth). The identity visually expresses the studio's core philosophy: blending advanced 3D technology with cinematic storytelling to create immersive visual experiences."
+        },
+        {
+          inlineHeading: "2. Custom Wordmark Construction",
+          text: "The logo is a fully customized wordmark, designed to feel:",
+          bullets: [
+            "Modern and futuristic — reflecting cutting-edge 3D technology",
+            "Fluid and cinematic — mirroring motion and animation",
+            "Premium and minimal — aligning with high-end visual artistry",
+          ],
+          closing: "The rounded, monoline letterforms create a sense of softness and flow, avoiding rigid tech clichés while maintaining digital precision."
+        },
 
-    //   ],
-    //   gridImage: nextronBreakdown,
-    // },
+      ],
+      gridImage: pixelore1,
+    },
     identityImages: [pixelore1, pixelore2],
     applicationsImages: [pixelore3, pixelore4, pixelore5],
     colorPalette: [
