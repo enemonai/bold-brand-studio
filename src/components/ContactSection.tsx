@@ -11,7 +11,6 @@ import { FaWhatsapp } from "react-icons/fa";
 const SOCIAL_LINKS = [
   { Icon: Instagram, href: "https://www.instagram.com/enemona.isaac" },
   { Icon: Twitter, href: "https://x.com/enemonaisaaz" },
-  // { Icon: Linkedin, href: "https://linkedin.com/in/johndoe-professional-random" },
   { Icon: FaWhatsapp, href: "https://wa.me/2349162045977" }
 ];
 
