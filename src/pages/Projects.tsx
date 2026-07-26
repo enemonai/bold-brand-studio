@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects.generated";
+import { siteContent } from "@/data/site-content.generated";
 import { SEO } from "@/components/SEO";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonLd";
@@ -11,11 +12,20 @@ import SiteFooter from "@/components/SiteFooter";
 
 const Projects = () => {
   const [visibleCount, setVisibleCount] = useState(4);
+  const listingSeo = siteContent.projectsListingSeo;
+  const listingTitle =
+    listingSeo?.metaTitle?.trim() || "Projects | Enemona Isaac's Design Portfolio";
+  const listingDescription = listingSeo?.metaDescription?.trim() || undefined;
+  const listingImage = listingSeo?.ogImageUrl?.trim() || undefined;
+  const listingKeywords = listingSeo?.keywords?.length ? listingSeo.keywords : undefined;
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Projects | Enemona Isaac's Design Portfolio"
+        title={listingTitle}
+        description={listingDescription}
+        image={listingImage}
+        keywords={listingKeywords}
         pathname="/projects"
       />
       <JsonLd
