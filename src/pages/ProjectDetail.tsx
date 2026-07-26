@@ -2,9 +2,13 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects";
+import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects.generated";
+import { siteContent } from "@/data/site-content.generated";
 import { SEO } from "@/components/SEO";
-import enemonaLogo from "../assets/ENEMONA1.png";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from "@/lib/jsonLd";
+import SiteNavigation from "@/components/SiteNavigation";
+import SiteFooter from "@/components/SiteFooter";
 
 const DynamicHeading = ({
   heading,
@@ -95,32 +99,57 @@ const ProjectDetail = () => {
 
   const { prev, next } = getAdjacentProjects(project.slug);
 
+  const siteTitle = siteContent.seo?.metaTitle?.trim() || "Enemona Isaac's Design Portfolio";
+  const seoTitle =
+    project.seo?.metaTitle?.trim() ||
+    `${project.title} - ${project.client} | ${siteTitle}`;
+  const seoDescription =
+    project.seo?.metaDescription?.trim() ||
+    (project.aboutClient?.[0]?.text
+      ? project.aboutClient[0].text
+      : `Project for ${project.client}: ${project.description}`);
+  const seoImage =
+    project.seo?.ogImageUrl?.trim() || project.hero || project.image || undefined;
+  const seoKeywords =
+    project.seo?.keywords?.length ? project.seo.keywords : project.keywords;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${project.title} - ${project.client} | Enemona Isaac's Design Portfolio`}
-        description={project.aboutClient ? project.aboutClient[0].text : `Project for ${project.client}: ${project.description}`}
-        image={project.hero}
-        keywords={project.keywords}
+        title={seoTitle}
+        description={seoDescription}
+        image={seoImage}
+        keywords={seoKeywords}
+        pathname={`/project/${project.slug}`}
       />
-      {/* ─── Top bar ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-          <a href="/" className="flex items-center">
-            <img src={enemonaLogo} alt="Onoja" className="h-[20px] w-auto" />
-          </a>
-          <Link
-            to="/projects"
-            className="text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase flex items-center gap-2"
-          >
-            <ArrowLeft size={14} /> Back <span className="hidden md:block">to Projects</span>
-          </Link>
-        </div>
-      </nav>
+      <JsonLd
+        data={[
+          buildCreativeWorkJsonLd({
+            title: project.title,
+            description: project.description,
+            image: project.hero,
+            slug: project.slug,
+          }),
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Projects', path: '/projects' },
+            { name: project.title, path: `/project/${project.slug}` },
+          ]),
+        ]}
+      />
+      {/* ─── Navigation ─── */}
+      <SiteNavigation />
 
       {/* ─── HERO ─── */}
       <header className="pt-32 pb-20">
         <div className="container mx-auto px-6 lg:px-12">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-primary transition-colors tracking-wide uppercase mb-8"
+          >
+            <ArrowLeft size={14} /> Back to Projects
+          </Link>
+
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
               {project.industry}
@@ -288,8 +317,8 @@ const ProjectDetail = () => {
               Color Palette
             </p>
             <div className="flex flex-wrap gap-4 mb-16">
-              {project.colorPalette.map((color) => (
-                <div key={color.hex} className="group">
+              {project.colorPalette.map((color, index) => (
+                <div key={`${color.hex}-${index}`} className="group">
                   <div
                     className="w-24 h-24 rounded-lg border border-border mb-3 transition-transform duration-300 group-hover:scale-105"
                     style={{ backgroundColor: color.hex }}
@@ -381,7 +410,7 @@ const ProjectDetail = () => {
       )}
 
       {/* ─── RESULTS ─── */}
-      <section className="py-24 hidden">
+      <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <Section>
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
@@ -452,14 +481,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* ─── Footer ─── */}
-      <footer className="py-12 border-t border-border">
-        <div className="container mx-auto px-6 lg:px-12 text-center">
-          <p className="text-muted-foreground font-body text-sm">
-            © {new Date().getFullYear()} Onoja Enemona Isaac. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 };

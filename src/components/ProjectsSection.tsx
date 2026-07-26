@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects } from "@/data/projects";
+import { projects } from "@/data/projects.generated";
 
 const ProjectsSection = () => {
   const ref = useRef(null);
@@ -79,7 +79,7 @@ const ProjectsSection = () => {
         >
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-display tracking-wider text-sm uppercase hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-md hover:rounded-full font-display tracking-wider text-sm uppercase hover:bg-primary/90 transition-all duration-300"
           >
             See All Projects <ArrowUpRight size={16} />
           </Link>

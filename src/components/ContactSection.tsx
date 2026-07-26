@@ -1,24 +1,33 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, type ComponentType } from "react";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Instagram, Twitter, Mail } from "lucide-react";
+import { Send, Instagram, Twitter, Mail, Linkedin, Facebook, Youtube } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaTiktok } from "react-icons/fa";
+import { siteContent } from "@/data/site-content.generated";
+import type { BbsSocialPlatform } from "@/data/site-content";
 
-const SOCIAL_LINKS = [
-  { Icon: Instagram, href: "https://www.instagram.com/enemona.isaac" },
-  { Icon: Twitter, href: "https://x.com/enemonaisaaz" },
-  // { Icon: Linkedin, href: "https://linkedin.com/in/johndoe-professional-random" },
-  { Icon: FaWhatsapp, href: "https://wa.me/2349162045977" }
-];
+type SocialIcon = ComponentType<{ size?: number | string; className?: string }>;
+
+const SOCIAL_ICONS: Record<BbsSocialPlatform, SocialIcon> = {
+  instagram: Instagram,
+  twitter: Twitter,
+  x: Twitter,
+  whatsapp: FaWhatsapp as SocialIcon,
+  linkedin: Linkedin,
+  facebook: Facebook,
+  tiktok: FaTiktok as SocialIcon,
+  youtube: Youtube,
+};
 
 const ContactSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
+  const { contact } = siteContent;
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -29,9 +38,6 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
-      console.log(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
-      console.log(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
@@ -66,35 +72,43 @@ const ContactSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Contact</p>
+            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">
+              {contact.eyebrow}
+            </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">
-              Let's Build Something{" "}
-              <span className="text-gradient">Bold.</span>
+              {contact.headingPrefix}{" "}
+              <span className="text-gradient">{contact.headingHighlight}</span>
             </h2>
             <p className="text-muted-foreground text-lg font-body font-light leading-relaxed mb-12">
-              Have a project in mind? I'd love to hear about it. Let's create a brand
-              that leads your industry.
+              {contact.description}
             </p>
 
             <div className="space-y-6">
-              <a href="mailto:enemonaisaaconoja@gmail.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors font-body group">
+              <a
+                href={`mailto:${contact.email}`}
+                className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors font-body group"
+              >
                 <div className="w-12 h-12 rounded-full border border-border group-hover:border-primary flex items-center justify-center transition-colors">
                   <Mail size={18} />
                 </div>
-                enemonaisaaconoja@gmail.com
+                {contact.email}
               </a>
               <div className="flex gap-4 pt-4">
-                {SOCIAL_LINKS.map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
-                  >
-                    <social.Icon size={18} className="text-muted-foreground hover:text-primary" />
-                  </a>
-                ))}
+                {contact.socials.map((social, i) => {
+                  const Icon = SOCIAL_ICONS[social.platform] ?? Instagram;
+
+                  return (
+                    <a
+                      key={`${social.platform}-${i}`}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-full border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
+                    >
+                      <Icon size={18} className="text-muted-foreground hover:text-primary" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </motion.div>

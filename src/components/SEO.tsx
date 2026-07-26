@@ -1,52 +1,80 @@
-import { Helmet } from 'react-helmet-async';
+import { Head } from 'vite-react-ssg';
+import defaultOgImage from '@/assets/2H0A0127.jpg';
+import { siteContent } from '@/data/site-content.generated';
+import { resolveCanonicalUrl, resolveOgImageUrl, resolveSiteOrigin } from '@/lib/siteUrl';
+
+const fallbackTitle = "Enemona Isaac's Design Portfolio";
+const fallbackDescription =
+  'Discover the design portfolio of Enemona Isaac, a product designer and digital experience creator.';
+const fallbackName = 'Enemona Isaac';
+const fallbackIcon = '/favicon.png';
 
 interface SEOProps {
-    title?: string;
-    description?: string;
-    name?: string;
-    type?: string;
-    image?: string;
-    icon?: string;
-    url?: string;
-    keywords?: string[];
+  title?: string;
+  description?: string;
+  name?: string;
+  type?: string;
+  image?: string;
+  icon?: string;
+  url?: string;
+  pathname?: string;
+  keywords?: string[];
+}
+
+function nonEmpty(value: string | undefined, fallback: string): string {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : fallback;
 }
 
 export const SEO = ({
-    title = "Enemona Isaac's Design Portfolio",
-    description = "Discover the design portfolio of Enemona Isaac, a product designer and digital experience creator.",
-    name = "Enemona Isaac",
-    type = "website",
-    image = "https://i.postimg.cc/Nf8Q7Y8q/2H0A0127.jpg",
-    icon = "https://i.postimg.cc/zX79GfSv/favicon.png",
-    url = window.location.href,
-    keywords = [],
+  title,
+  description,
+  name,
+  type = 'website',
+  image,
+  icon,
+  url,
+  pathname = '/',
+  keywords = [],
 }: SEOProps) => {
-    return (
-        <Helmet>
-            {/* Standard metadata tags */}
-            <title>{title}</title>
-            <meta name="description" content={description} />
-            {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
-            <link rel="icon" href={icon} />
-            <link rel="apple-touch-icon" href={icon} />
-            {/* End standard metadata tags */}
+  const seo = siteContent.seo;
+  const resolvedTitle = nonEmpty(title, nonEmpty(seo?.metaTitle, fallbackTitle));
+  const resolvedDescription = nonEmpty(
+    description,
+    nonEmpty(seo?.metaDescription, fallbackDescription)
+  );
+  const resolvedName = nonEmpty(name, nonEmpty(seo?.siteName, fallbackName));
+  const resolvedImage = nonEmpty(image, nonEmpty(seo?.ogImageUrl, defaultOgImage));
+  const resolvedIcon = nonEmpty(icon, nonEmpty(seo?.faviconUrl, fallbackIcon));
 
-            {/* Facebook tags */}
-            <meta property="og:type" content={type} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
-            <meta property="og:url" content={url} />
-            <meta property="og:site_name" content={name} />
-            {/* End Facebook tags */}
+  const canonicalUrl =
+    url ??
+    (typeof window !== 'undefined' ? window.location.href : resolveCanonicalUrl(pathname));
+  const ogImage = resolveOgImageUrl(resolvedImage);
+  const siteOrigin = resolveSiteOrigin();
 
-            {/* Twitter tags */}
-            <meta name="twitter:creator" content={name} />
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={title} />
-            <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={image} />
-            {/* End Twitter tags */}
-        </Helmet>
-    );
+  return (
+    <Head>
+      <title>{resolvedTitle}</title>
+      <meta name="description" content={resolvedDescription} />
+      {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+      <link rel="canonical" href={canonicalUrl} />
+      <link rel="icon" href={resolvedIcon} />
+      <link rel="apple-touch-icon" href={resolvedIcon} />
+
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={resolvedTitle} />
+      <meta property="og:description" content={resolvedDescription} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:site_name" content={resolvedName} />
+
+      <meta name="twitter:creator" content={resolvedName} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={resolvedTitle} />
+      <meta name="twitter:description" content={resolvedDescription} />
+      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:domain" content={siteOrigin.replace(/^https?:\/\//, '')} />
+    </Head>
+  );
 };

@@ -1,4 +1,6 @@
 import { SEO } from "@/components/SEO";
+import { JsonLd } from "@/components/JsonLd";
+import { buildPersonJsonLd } from "@/lib/jsonLd";
 import SiteNavigation from "@/components/SiteNavigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -12,7 +14,8 @@ import SiteFooter from "@/components/SiteFooter";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SEO />
+      <SEO pathname="/" />
+      <JsonLd data={buildPersonJsonLd()} />
       <SiteNavigation />
       <HeroSection />
       <AboutSection />
