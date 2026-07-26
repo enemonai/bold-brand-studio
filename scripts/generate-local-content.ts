@@ -1,19 +1,21 @@
 /**
- * Dev helper: write projects.generated.ts from static bold-brand-studio projects.ts
- * using the same loader the migration script uses. Build/predev normally use sync-content.ts
- * against the Crelyst API instead.
+ * Dev helper: write projects.generated.ts + site-content.generated.ts from local
+ * static sources when Crelyst API is unavailable.
  */
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { loadBoldBrandProjects } from '../../crelyst/scripts/lib/loadBoldBrandProjects.ts';
+import { DEFAULT_SITE_CONTENT } from '../src/data/site-content.ts';
 
-const out = resolve(process.cwd(), 'src/data/projects.generated.ts');
+const projectsOut = resolve(process.cwd(), 'src/data/projects.generated.ts');
+const siteOut = resolve(process.cwd(), 'src/data/site-content.generated.ts');
 
 const projects = await loadBoldBrandProjects();
-const json = JSON.stringify(projects, null, 2);
+const projectsJson = JSON.stringify(projects, null, 2);
+const siteJson = JSON.stringify(DEFAULT_SITE_CONTENT, null, 2);
 
 writeFileSync(
-  out,
+  projectsOut,
   `/**
  * AUTO-GENERATED — local static seed for dev/tsc when Crelyst API is unavailable.
  * Production builds use scripts/sync-content.ts against the public API.
@@ -22,7 +24,7 @@ import type { Project, Paragraph, SectionHeading } from './projects';
 
 export type { Project, Paragraph, SectionHeading };
 
-export const projects: Project[] = ${json} as Project[];
+export const projects: Project[] = ${projectsJson} as Project[];
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
@@ -38,4 +40,20 @@ export function getAdjacentProjects(slug: string) {
   'utf8'
 );
 
-console.log(`Wrote ${out} (${projects.length} projects)`);
+writeFileSync(
+  siteOut,
+  `/**
+ * AUTO-GENERATED — local static seed for dev/tsc when Crelyst API is unavailable.
+ * Production builds use scripts/sync-content.ts against the public API.
+ */
+import type { BbsSiteContent } from './site-content';
+
+export type { BbsSiteContent };
+
+export const siteContent: BbsSiteContent = ${siteJson} as BbsSiteContent;
+`,
+  'utf8'
+);
+
+console.log(`Wrote ${projectsOut} (${projects.length} projects)`);
+console.log(`Wrote ${siteOut}`);
