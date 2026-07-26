@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { getProject, getAdjacentProjects, Paragraph, SectionHeading } from "@/data/projects.generated";
+import { siteContent } from "@/data/site-content.generated";
 import { SEO } from "@/components/SEO";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCreativeWorkJsonLd } from "@/lib/jsonLd";
@@ -98,13 +99,27 @@ const ProjectDetail = () => {
 
   const { prev, next } = getAdjacentProjects(project.slug);
 
+  const siteTitle = siteContent.seo?.metaTitle?.trim() || "Enemona Isaac's Design Portfolio";
+  const seoTitle =
+    project.seo?.metaTitle?.trim() ||
+    `${project.title} - ${project.client} | ${siteTitle}`;
+  const seoDescription =
+    project.seo?.metaDescription?.trim() ||
+    (project.aboutClient?.[0]?.text
+      ? project.aboutClient[0].text
+      : `Project for ${project.client}: ${project.description}`);
+  const seoImage =
+    project.seo?.ogImageUrl?.trim() || project.hero || project.image || undefined;
+  const seoKeywords =
+    project.seo?.keywords?.length ? project.seo.keywords : project.keywords;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${project.title} - ${project.client} | Enemona Isaac's Design Portfolio`}
-        description={project.aboutClient ? project.aboutClient[0].text : `Project for ${project.client}: ${project.description}`}
-        image={project.hero}
-        keywords={project.keywords}
+        title={seoTitle}
+        description={seoDescription}
+        image={seoImage}
+        keywords={seoKeywords}
         pathname={`/project/${project.slug}`}
       />
       <JsonLd

@@ -99,6 +99,12 @@ export interface Project {
   resultsHeading?: SectionHeading;
   results: { label: string; value: string }[];
   keywords: string[];
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImageUrl?: string;
+    keywords?: string[];
+  };
   featured?: boolean;
 }
 
