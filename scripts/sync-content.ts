@@ -44,6 +44,8 @@ type ApiSiteContentResponse = {
     content: {
       about: Record<string, unknown>;
       contact: Record<string, unknown>;
+      seo?: Record<string, unknown>;
+      projectsListingSeo?: Record<string, unknown>;
     };
   };
   message?: string;
@@ -123,6 +125,8 @@ export function getAdjacentProjects(slug: string) {
 function serializeSiteContentFile(content: {
   about: Record<string, unknown>;
   contact: Record<string, unknown>;
+  seo: Record<string, unknown>;
+  projectsListingSeo: Record<string, unknown>;
 }): string {
   const json = JSON.stringify(content, null, 2);
   return `/**
@@ -187,6 +191,8 @@ async function syncSiteContent(): Promise<void> {
   const content = {
     about: json.data.content.about,
     contact: json.data.content.contact,
+    seo: json.data.content.seo ?? {},
+    projectsListingSeo: json.data.content.projectsListingSeo ?? {},
   };
 
   mkdirSync(dirname(SITE_CONTENT_OUTPUT), { recursive: true });

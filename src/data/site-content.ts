@@ -37,12 +37,29 @@ export type BbsContactContent = {
   socials: BbsSocialLink[];
 };
 
+export type BbsSeoContent = {
+  metaTitle: string;
+  metaDescription: string;
+  siteName: string;
+  ogImageUrl: string;
+  faviconUrl: string;
+};
+
+export type BbsProjectsListingSeoContent = {
+  metaTitle: string;
+  metaDescription: string;
+  ogImageUrl: string;
+  keywords: string[];
+};
+
 export type BbsSiteContent = {
   about: BbsAboutContent;
   contact: BbsContactContent;
+  seo: BbsSeoContent;
+  projectsListingSeo: BbsProjectsListingSeoContent;
 };
 
-/** Cutover defaults matching the previous hardcoded About/Contact sections. */
+/** Cutover defaults matching the previous hardcoded About/Contact/SEO sections. */
 export const DEFAULT_SITE_CONTENT: BbsSiteContent = {
   about: {
     eyebrow: 'About',
@@ -73,5 +90,19 @@ export const DEFAULT_SITE_CONTENT: BbsSiteContent = {
       { platform: 'x', href: 'https://x.com/enemonaisaaz' },
       { platform: 'whatsapp', href: 'https://wa.me/2349162045977' },
     ],
+  },
+  seo: {
+    metaTitle: "Enemona Isaac's Design Portfolio",
+    metaDescription:
+      'Discover the design portfolio of Enemona Isaac, a product designer and digital experience creator.',
+    siteName: 'Enemona Isaac',
+    ogImageUrl: '',
+    faviconUrl: '',
+  },
+  projectsListingSeo: {
+    metaTitle: "Projects | Enemona Isaac's Design Portfolio",
+    metaDescription: '',
+    ogImageUrl: '',
+    keywords: [],
   },
 };
